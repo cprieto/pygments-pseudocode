@@ -14,8 +14,6 @@ class PseudocodeLexer(RegexLexer):
     name_variable = r'[a-z_]\w*'
     name_function = r'[A-Z]\w*'
     name_constant = r'[A-Z_][A-Z0-9_]*'
-    name_class = r'[A-Z]\w*'
-    name_module = r'[a-z0-9_]*'
 
     tokens = {
        'root': [
@@ -29,7 +27,7 @@ class PseudocodeLexer(RegexLexer):
             (r'\.[0-9]*(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
-            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))', Operator),
+            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|or|and|not|[=<>^]))', Operator),
             (r'[\[\]]', Punctuation),
             (r'\%[10]+', Number.Bin),
             (r'(?i)\b(?:null|true|false)\b', Name.Builtin),
@@ -39,6 +37,12 @@ class PseudocodeLexer(RegexLexer):
             (r'%s\b' % name_function, Name.Function),
             (r'%s\b' % name_variable, Name.Variable),
        ],
+       'funcname': [
+            (r'(?i)%s\b' % name_function, Name.Function),
+            (r'\s+', Text),
+            (r'\(', Punctuation, 'variables'),
+            (r'\)', Punctuation, '#pop')
+        ],
        'variables': [
             (r'%s\b' % name_constant, Name.Constant),
             (r'%s\b' % name_variable, Name.Variable),
