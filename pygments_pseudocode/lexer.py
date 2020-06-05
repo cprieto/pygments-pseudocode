@@ -28,7 +28,7 @@ class PseudocodeLexer(RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r'\$[0-9a-f]+', Number.Hex),
             (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|or|and|not|[=<>^]))', Operator),
-            (r'[\[\]]', Punctuation),
+            (r'[\[\]],', Punctuation),
             (r'\%[10]+', Number.Bin),
             (r'(?i)\b(?:null|true|false)\b', Name.Builtin),
             # keywords
