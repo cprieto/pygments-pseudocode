@@ -27,7 +27,7 @@ class PseudocodeLexer(RegexLexer):
             (r'\.[0-9]*(?!\.)', Number.Float),
             (r'[0-9]+', Number.Integer),
             (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|or|and|not|[=<>^]))', Operator),
-            (r'[(){}!#,.:]\[\]', Punctuation),
+            (r'[(){}!#,.:\[\]]', Punctuation),
             (r'(?i)\b(?:null|true|false)\b', Name.Builtin),
             # keywords
             (words(('function', 'while', 'for', 'end', 'do', 'if', 'then', 'return', 'new'), prefix=r'\b', suffix=r'\b'), Keyword.Reserved),
